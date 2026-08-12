@@ -524,6 +524,19 @@
   footer .brand { color: var(--ground); margin-bottom: 14px; display: block; }
   footer p { max-width: 66ch; font-size: .92rem; margin: 0; opacity: .82; font-weight: 500; }
   footer a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; }
+  footer nav a {
+    color: var(--ground);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: .84rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 2.5px solid color-mix(in srgb, var(--ground) 40%, transparent);
+    padding-bottom: 2px;
+  }
+  footer nav a:hover, footer nav a:focus-visible { border-bottom-color: var(--ground); }
 
   @media (max-width: 640px) {
     .vem-card { border-radius: 22px; padding: 24px; }
@@ -747,7 +760,16 @@
 <footer>
   <div class="wrap">
     <span class="brand display">Kalorisnål <span>Glass</span></span>
-    <p>Hela topplistan över kalorisnål glass 2026 finns på <a href="../">startsidan</a>.</p>
+    <p>Hela topplistan över kalorisnål glass 2026 finns på <a href="/">startsidan</a>.</p>
+    <nav aria-label="Sidfot">
+      <a href="/">Startsidan</a>
+      <a href="/#topplista">Topplistan</a>
+      <a href="/nyttig-glass/">Nyttig glass</a>
+      <a href="/god-glass-lag-kalori/">God glass, låg kalori</a>
+      <a href="/proteinglass/">Proteinglass</a>
+      <a href="/sannany/">Sannany</a>
+      <a href="/om/">Om sidan</a>
+    </nav>
   </div>
 </footer>
 
