@@ -79,6 +79,21 @@
   }
   .calc-out .sub { display: block; margin-top: 9px; font-weight: 600; font-size: .96rem; }
   .calc-note { margin: 16px 0 0; color: var(--ink-2); font-size: .92rem; font-weight: 500; max-width: 60ch; }
+
+  /* ===== Grupprubrik i listan ===== */
+  .board .grouprow {
+    margin: 0;
+    padding: 13px 24px;
+    background: var(--surface-2);
+    border-top: 3px solid var(--line);
+    border-bottom: 3px solid var(--line);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
   @media (max-width: 700px) {
     .calc { padding: 22px 20px; border-radius: 22px; }
   }
@@ -229,19 +244,20 @@
 
     <div class="calc">
       <div class="calc-presets" role="group" aria-label="Snabbval">
-        <button type="button" class="chip" data-kcal="122" data-protein="6.2" data-gram="150">NICK'S Strawberry White</button>
-        <button type="button" class="chip" data-kcal="170" data-protein="13" data-gram="150">Lohilo Strawberry White</button>
-        <button type="button" class="chip" data-kcal="259" data-protein="" data-gram="51">NICK'S Crunchy Almond</button>
+        <button type="button" class="chip" data-kcal="122" data-protein="6.2" data-gram="150" data-unit="g">NICK'S Strawberry White</button>
+        <button type="button" class="chip" data-kcal="170" data-protein="13" data-gram="150" data-unit="g">Lohilo Strawberry White</button>
+        <button type="button" class="chip" data-kcal="105" data-protein="5.9" data-gram="150" data-unit="ml">NICK'S Sea Salt Caramel</button>
+        <button type="button" class="chip" data-kcal="259" data-protein="" data-gram="51" data-unit="g">NICK'S Crunchy Almond</button>
       </div>
 
       <div class="calc-fields">
-        <label for="c-kcal">Kcal per 100 g
+        <label for="c-kcal">Kcal per 100
           <input type="number" id="c-kcal" value="122" min="0" max="900" step="1" inputmode="numeric">
         </label>
-        <label for="c-prot">Protein per 100 g
+        <label for="c-prot">Protein per 100
           <input type="number" id="c-prot" value="6.2" min="0" max="100" step="0.1" inputmode="decimal">
         </label>
-        <label for="c-gram">Så mycket tar du (g)
+        <label for="c-gram">Så mycket tar du
           <input type="number" id="c-gram" value="150" min="0" max="2000" step="10" inputmode="numeric">
         </label>
       </div>
@@ -252,8 +268,8 @@
       </output>
 
       <p class="calc-note">
-        Räknar rakt av: kalorier per 100 gram gånger din portion. Det är samma matematik som står
-        på paketets baksida, bara utan huvudräkningen.
+        Räknar rakt av: värdet per 100 gånger din portion. Fungerar för både gram och milliliter
+        — använd bara samma enhet i båda fälten, eftersom 100 ml glass väger mindre än 100 g.
       </p>
     </div>
   </section>
@@ -261,95 +277,101 @@
   <section id="listan">
     <h2>Proteinglass med låg kalorihalt i Sverige 2026</h2>
     <p class="section-note">
-      Sorterad på kalorier per 100 gram, lägst först. Sista kolumnen är per styck där tillverkaren
-      anger en portion. Det här är en jämförelse, inte en rangordning — enheterna skiljer sig åt,
-      och det är precis problemet.
+      Grupperad efter den enhet tillverkaren själv använder — det är enda hederliga sättet.
+      Inom en grupp går siffrorna att jämföra rakt av, mellan grupperna gör de inte det.
+      Lägst först i varje grupp.
     </p>
 
     <div class="board board--wide">
       <div class="board-head">
         <span>&nbsp;</span>
         <span>Produkt</span>
-        <span>Per 100 g</span>
-        <span>Per styck</span>
+        <span>Protein</span>
+        <span>Energi</span>
       </div>
+
+      <p class="grouprow">Per styck — jämförbart med topplistan</p>
 
       <div class="row" data-band="etta">
         <div class="rank">•</div>
         <div>
-          <div class="name">NICK'S Strawberry White</div>
-          <div class="kind">Pint · 6,2 g protein/100 g · inget tillsatt socker</div>
+          <div class="name">Hemglass Sorbet Blåbär/Hallon</div>
+          <div class="kind">Sorbetbägare 75 ml · lättast per styck, men knappt något protein</div>
         </div>
-        <div class="kind"><b>122 kcal</b> — lägst kalorihalt</div>
-        <div class="kcal kcal--tbd">Per vikt</div>
+        <div class="kind">Ej angivet</div>
+        <div class="kcal">90 <small>kcal/st</small></div>
       </div>
 
       <div class="row" data-band="latt">
         <div class="rank">•</div>
         <div>
-          <div class="name">Lohilo Strawberry White</div>
-          <div class="kind">Bägare 350 ml · 13 g protein/100 g — mest protein</div>
+          <div class="name">NICK'S Crunchy Almond</div>
+          <div class="kind">Pinnglass 51 g · utan tillsatt socker · ≈ 259 kcal/100 g räknat från vikten</div>
         </div>
-        <div class="kind"><b>170 kcal</b></div>
-        <div class="kcal kcal--tbd">Per vikt</div>
+        <div class="kind">Ej angivet</div>
+        <div class="kcal">132 <small>kcal/st</small></div>
+      </div>
+
+      <p class="grouprow">Per 100 gram</p>
+
+      <div class="row" data-band="latt">
+        <div class="rank">•</div>
+        <div>
+          <div class="name">NICK'S Strawberry White</div>
+          <div class="kind">Pint · utan tillsatt socker · lägst kalorihalt per 100 g</div>
+        </div>
+        <div class="kind"><b>6,2 g</b>/100 g</div>
+        <div class="kcal">122 <small>kcal/100 g</small></div>
       </div>
 
       <div class="row" data-band="mellan">
         <div class="rank">•</div>
         <div>
-          <div class="name">NICK'S Crunchy Almond</div>
-          <div class="kind">Pinnglass 51 g · inget tillsatt socker</div>
+          <div class="name">Lohilo Strawberry White</div>
+          <div class="kind">Bägare 350 ml · mest protein av alla i listan</div>
         </div>
-        <div class="kind"><b>≈ 259 kcal</b> — räknat från 132 kcal/51 g</div>
-        <div class="kcal">132 <small>kcal</small></div>
+        <div class="kind"><b>13 g</b>/100 g</div>
+        <div class="kcal">170 <small>kcal/100 g</small></div>
       </div>
+
+      <p class="grouprow">Per 100 milliliter — jämför inte med raderna ovan</p>
 
       <div class="row" data-band="latt">
         <div class="rank">•</div>
         <div>
-          <div class="name">Hemglass Sorbet Blåbär/Hallon</div>
-          <div class="kind">Sorbetbägare 75 ml · lättast per styck</div>
+          <div class="name">NICK'S Sea Salt Caramel</div>
+          <div class="kind">Pint 473 ml · utan tillsatt socker · lägst av NICK'S pints</div>
         </div>
-        <div class="kind">Ej angivet</div>
-        <div class="kcal">90 <small>kcal</small></div>
+        <div class="kind"><b>5,9 g</b>/100 ml</div>
+        <div class="kcal">105 <small>kcal/100 ml</small></div>
       </div>
 
-      <div class="row" data-band="tyngst">
+      <div class="row" data-band="mellan">
         <div class="rank">•</div>
         <div>
-          <div class="name">NICK'S Sea Salt Caramel</div>
-          <div class="kind">Pint 473 ml · utan tillsatt socker</div>
+          <div class="name">NICK'S Brownie Cookie Dough</div>
+          <div class="kind">Pint 473 ml · utan tillsatt socker · mest protein av NICK'S pints</div>
         </div>
-        <div class="kind">Ej verifierat</div>
-        <div class="kcal kcal--tbd">Kompletteras</div>
+        <div class="kind"><b>7,8 g</b>/100 ml</div>
+        <div class="kcal">131 <small>kcal/100 ml</small></div>
       </div>
 
       <div class="row" data-band="tyngst">
         <div class="rank">•</div>
         <div>
           <div class="name">NICK'S Peanut Butter Chocolate</div>
-          <div class="kind">Pint 473 ml · utan tillsatt socker</div>
+          <div class="kind">Pint 473 ml · utan tillsatt socker · tyngst av NICK'S pints</div>
         </div>
-        <div class="kind">Ej verifierat</div>
-        <div class="kcal kcal--tbd">Kompletteras</div>
-      </div>
-
-      <div class="row" data-band="tyngst">
-        <div class="rank">•</div>
-        <div>
-          <div class="name">NICK'S Brownie Cookie Dough</div>
-          <div class="kind">Pint 473 ml · utan tillsatt socker</div>
-        </div>
-        <div class="kind">Ej verifierat</div>
-        <div class="kcal kcal--tbd">Kompletteras</div>
+        <div class="kind"><b>6,6 g</b>/100 ml</div>
+        <div class="kcal">133 <small>kcal/100 ml</small></div>
       </div>
     </div>
 
     <p class="legend">
-      <span><i style="background:#F0357F"></i>Lägst kalorihalt per 100 g</span>
-      <span><i style="background:#7ED04B"></i>Bra val</span>
-      <span><i style="background:#45C6E0"></i>Låg per styck, hög per 100 g</span>
-      <span><i style="background:#FF7433"></i>Värden ej verifierade</span>
+      <span><i style="background:#F0357F"></i>Lägst per styck</span>
+      <span><i style="background:#7ED04B"></i>Lägst i sin grupp</span>
+      <span><i style="background:#45C6E0"></i>Mellanläge</span>
+      <span><i style="background:#FF7433"></i>Högst i sin grupp</span>
     </p>
 
     <a class="more-link" href="/#topplista">Jämför med kalorilistan per styck →</a>
@@ -386,8 +408,8 @@
     <p class="section-note">Fungerar oavsett vilket märke som råkar stå i frysdisken.</p>
     <ul class="tips">
       <li style="--dot: var(--aqua)">
-        <h3>Leta upp gramvikten, inte milliliter</h3>
-        <p>Paket anger ofta volym i ml men näringsvärden per 100 g. Glass är full av luft, så en 473 ml pint väger betydligt mindre än 473 g — vikten står oftast i det finstilta.</p>
+        <h3>Kolla vilken enhet paketet använder</h3>
+        <p>NICK'S pints anges per 100 ml, Lohilo per 100 g, pinnglass per styck. Glass är full av luft, så en 473 ml pint väger betydligt mindre än 473 g — jämför bara inom samma enhet.</p>
       </li>
       <li style="--dot: var(--pink)">
         <h3>Sikta på minst 10 g protein i din portion</h3>
@@ -418,6 +440,8 @@
         <div class="answer">
           <p>NICK'S Strawberry White har lägst kalorihalt med 122 kcal per 100 gram. Räknat per
           styck är NICK'S Crunchy Almond lägst av proteinglassarna med 132 kcal per pinne.</p>
+          <p>NICK'S Sea Salt Caramel visar 105 kcal, men det är per 100 <em>milliliter</em> och
+          därför inte jämförbart — 100 ml glass väger mindre än 100 gram.</p>
         </div>
       </details>
 
@@ -478,10 +502,11 @@
       <details>
         <summary>Var kommer siffrorna ifrån?</summary>
         <div class="answer">
-          <p>Det är cirkavärden för de vanliga storlekarna, och värdet per 100 g för NICK'S Crunchy
-          Almond är räknat från 132 kcal per 51 gram. Tre NICK'S-pints saknar verifierade värden och
-          är markerade som sådana i stället för att gissas. Tillverkare ändrar recept, så
-          förpackningen gäller före listan — hela metoden står på <a href="/om/">om-sidan</a>.</p>
+          <p>Det är cirkavärden för de vanliga storlekarna, i den enhet tillverkaren själv använder
+          — per styck, per 100 gram eller per 100 milliliter. Det enda omräknade talet är
+          ≈ 259 kcal/100 g för NICK'S Crunchy Almond, räknat från 132 kcal per 51 gram. Tillverkare
+          ändrar recept och förpackningsstorlek, så förpackningen gäller före listan. Hela metoden
+          står på <a href="/om/">om-sidan</a>.</p>
         </div>
       </details>
     </div>
@@ -556,16 +581,16 @@
       "@type": "ItemList",
       "@id": "https://www.kalorisnalglass.se/proteinglass/#lista",
       "name": "Proteinglass med låg kalorihalt i Sverige 2026",
-      "description": "Jämförelse av proteinglass sorterad på kalorier per 100 gram, lägst först. Per styck anges där tillverkaren anger en portion.",
+      "description": "Jämförelse av proteinglass grupperad efter den enhet tillverkaren själv använder: per styck, per 100 gram och per 100 milliliter. Siffrorna går att jämföra inom en grupp, inte mellan grupperna.",
       "numberOfItems": 7,
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "NICK'S Strawberry White – 122 kcal/100 g, 6,2 g protein/100 g" },
-        { "@type": "ListItem", "position": 2, "name": "Lohilo Strawberry White – 170 kcal/100 g, 13 g protein/100 g" },
-        { "@type": "ListItem", "position": 3, "name": "NICK'S Crunchy Almond – 132 kcal per pinne (51 g), ca 259 kcal/100 g" },
-        { "@type": "ListItem", "position": 4, "name": "Hemglass Sorbet Blåbär/Hallon – 90 kcal per bägare (75 ml)" },
-        { "@type": "ListItem", "position": 5, "name": "NICK'S Sea Salt Caramel – pint 473 ml, näringsvärden ej verifierade" },
-        { "@type": "ListItem", "position": 6, "name": "NICK'S Peanut Butter Chocolate – pint 473 ml, näringsvärden ej verifierade" },
-        { "@type": "ListItem", "position": 7, "name": "NICK'S Brownie Cookie Dough – pint 473 ml, näringsvärden ej verifierade" }
+        { "@type": "ListItem", "position": 1, "name": "Hemglass Sorbet Blåbär/Hallon – 90 kcal per styck (sorbetbägare 75 ml)" },
+        { "@type": "ListItem", "position": 2, "name": "NICK'S Crunchy Almond – 132 kcal per styck (pinnglass 51 g), ca 259 kcal/100 g" },
+        { "@type": "ListItem", "position": 3, "name": "NICK'S Strawberry White – 122 kcal/100 g, 6,2 g protein/100 g (lägst kalorihalt per 100 g)" },
+        { "@type": "ListItem", "position": 4, "name": "Lohilo Strawberry White – 170 kcal/100 g, 13 g protein/100 g (mest protein)" },
+        { "@type": "ListItem", "position": 5, "name": "NICK'S Sea Salt Caramel – 105 kcal/100 ml, 5,9 g protein/100 ml" },
+        { "@type": "ListItem", "position": 6, "name": "NICK'S Brownie Cookie Dough – 131 kcal/100 ml, 7,8 g protein/100 ml" },
+        { "@type": "ListItem", "position": 7, "name": "NICK'S Peanut Butter Chocolate – 133 kcal/100 ml, 6,6 g protein/100 ml" }
       ]
     }
   ]
@@ -599,30 +624,30 @@
     if (!kcalEl || !protEl || !gramEl || !out) return;
 
     var chips = Array.prototype.slice.call(document.querySelectorAll('.calc-presets .chip'));
+    var unit = 'g';
 
     function sv(n, decimals) {
       return n.toFixed(decimals).replace('.', ',').replace(/,0$/, '');
     }
 
     function render() {
-      var kcal100 = parseFloat(kcalEl.value);
+      var per100 = parseFloat(kcalEl.value);
       var prot100 = parseFloat(protEl.value);
-      var gram = parseFloat(gramEl.value);
+      var portion = parseFloat(gramEl.value);
 
-      if (!isFinite(kcal100) || !isFinite(gram) || gram <= 0) {
-        out.innerHTML = '<span class="big">—</span><span class="sub">Fyll i kalorier per 100 g och hur många gram du tar.</span>';
+      if (!isFinite(per100) || !isFinite(portion) || portion <= 0) {
+        out.innerHTML = '<span class="big">—</span>' +
+                        '<span class="sub">Fyll i kalorier per 100 och hur mycket du tar.</span>';
         return;
       }
 
-      var totalKcal = kcal100 * gram / 100;
-      var sub = 'i ' + sv(gram, 0) + ' g glass';
+      var sub = 'i ' + sv(portion, 0) + ' ' + unit + ' glass';
 
       if (isFinite(prot100) && prot100 > 0) {
-        var totalProt = prot100 * gram / 100;
-        sub = sv(totalProt, 1) + ' g protein i ' + sv(gram, 0) + ' g glass';
+        sub = sv(prot100 * portion / 100, 1) + ' g protein i ' + sv(portion, 0) + ' ' + unit + ' glass';
       }
 
-      out.innerHTML = '<span class="big">' + sv(Math.round(totalKcal), 0) + ' kcal</span>' +
+      out.innerHTML = '<span class="big">' + sv(Math.round(per100 * portion / 100), 0) + ' kcal</span>' +
                       '<span class="sub">' + sub + '</span>';
     }
 
@@ -636,6 +661,7 @@
         kcalEl.value = chip.dataset.kcal;
         protEl.value = chip.dataset.protein || '';
         gramEl.value = chip.dataset.gram;
+        unit = chip.dataset.unit || 'g';
         render();
       });
     });
