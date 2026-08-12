@@ -51,3 +51,4 @@ Kalorisnål glass betyder här få kalorier per hel glass (per styck), inte per 
 - [Proteinglass & pints](https://www.kalorisnalglass.se/#proteinglass): kalorisnåla bägare och pints med mer protein
 - [Så väljer du kalorisnål glass](https://www.kalorisnalglass.se/#tips): fem tumregler vid frysdisken
 - [Vanliga frågor](https://www.kalorisnalglass.se/#faq): korta svar om kalorisnål och nyttig glass
+- [Om sidan – så gör vi rankningen](https://www.kalorisnalglass.se/om/): metoden bakom listan (kalorier per styck, källor, en sorteringsnyckel, öppna kort om Sannany) och vem som driver sidan

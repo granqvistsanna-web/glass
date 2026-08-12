@@ -359,6 +359,21 @@
     text-transform: uppercase;
   }
   .champion .blurb { margin: 14px 0 0; max-width: 48ch; font-weight: 500; }
+  .champion .more {
+    display: inline-block;
+    margin: 18px 0 0 14px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: .92rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--on-bright);
+    text-decoration: none;
+    border-bottom: 3px solid var(--pink);
+    padding-bottom: 2px;
+  }
+  .champion .more:hover, .champion .more:focus-visible { color: var(--pink); }
+  .champion .more:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
   .stamp {
     display: inline-block;
     margin: 18px 0 0;
@@ -601,6 +616,7 @@
   footer .wrap { padding: 40px 22px 52px; }
   footer .brand { color: var(--ground); margin-bottom: 14px; display: block; }
   footer p { max-width: 66ch; font-size: .92rem; margin: 0; opacity: .82; font-weight: 500; }
+  footer a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
 
   @media (max-width: 640px) {
     .board-head { grid-template-columns: 34px 1fr auto; }
@@ -632,6 +648,7 @@
     <a href="#topplista">Topplistan</a>
     <a href="#proteinglass">Proteinglass</a>
     <a href="#faq">Frågor &amp; svar</a>
+    <a href="om/">Om sidan</a>
   </nav>
 </div>
 
@@ -649,6 +666,7 @@
         <a href="#topplista">Topplistan</a>
         <a href="#proteinglass">Proteinglass</a>
         <a href="#faq">Frågor &amp; svar</a>
+        <a href="om/">Om sidan</a>
       </nav>
     </div>
 
@@ -1082,6 +1100,7 @@
 <footer>
   <div class="wrap">
     <span class="brand display">Kalorisnål <span>Glass</span></span>
+    <p>Nyfiken på metoden bakom listan? Läs <a href="om/">om sidan</a>.</p>
   </div>
 </footer>
 
