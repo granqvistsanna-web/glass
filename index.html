@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Kalorisnål glass 2026 – topplistan över nyttig glass i Sverige</title>
-<meta name="description" content="Kalorisnål glass 2026: Sveriges 20 glassar med minst kalorier per styck – Sannany 32 kcal, Mini Twister 43 kcal, Piggelin 49 kcal – plus proteinglass från NICK'S och Lohilo.">
+<meta name="description" content="Kalorisnål glass 2026: Sveriges 20 glassar med minst kalorier per styck – Sannany 32 kcal, Mini Twister 43 kcal, Piggelin 49 kcal – plus proteinglass.">
 <link rel="canonical" href="https://www.kalorisnalglass.se/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="google-site-verification" content="parl-huP4s16xqr0qvLGiXvKXNknpA-ihZ_wbgCuyAg">
@@ -23,9 +23,22 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🍦</text></svg>">
+<meta name="google-site-verification" content="parl-huP4s16xqr0qvLGiXvKXNknpA-ihZ_wbgCuyAg">
 
-<script>document.documentElement.classList.add('js');</script>
+<link rel="icon" href="/favicon.png" sizes="any" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+<script>
+  document.documentElement.classList.add('js');
+  // Skyddsnät: rubrikerna göms bara medan GSAP laddas. Svarar inte CDN:et i tid
+  // visas de ändå — en rubrik får aldrig fastna osynlig.
+  setTimeout(function () {
+    if (!window.__splitReady) document.documentElement.classList.remove('js');
+  }, 2500);
+</script>
 
 <style>
   /* ================= Tokens ================= */
@@ -677,7 +690,7 @@
     <h1 data-split="heading" data-split-reveal="words">Kalorisnål glass 2026<em>de 20 med minst kalorier</em></h1>
 
     <p class="standfirst">
-      Kalorisnål glass betyder få kalorier per styck — inte per 100 ml. Här är Sveriges tio
+      Kalorisnål glass betyder få kalorier per styck — inte per 100 ml. Här är Sveriges 20
       lättaste glassar 2026, rankade från lägst till högst, så att valet vid kiosken tar tre
       sekunder i stället för tre minuters etikettläsning.
     </p>
@@ -1118,7 +1131,17 @@
       "@type": "Organization",
       "@id": "https://www.kalorisnalglass.se/#org",
       "name": "Kalorisnål Glass",
-      "url": "https://www.kalorisnalglass.se/"
+      "url": "https://www.kalorisnalglass.se/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.kalorisnalglass.se/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://granqvistsanna-web.github.io/",
+        "https://github.com/granqvistsanna-web/glass"
+      ]
     },
     {
       "@type": "WebSite",
@@ -1153,7 +1176,7 @@
       "itemListOrder": "https://schema.org/ItemListOrderAscending",
       "numberOfItems": 20,
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Sannany Vanilj & havssalt – 32 kcal" },
+        { "@type": "ListItem", "position": 1, "name": "Sannany Vanilj & havssalt – 32 kcal", "url": "https://www.kalorisnalglass.se/sannany/" },
         { "@type": "ListItem", "position": 2, "name": "Mini Twister – 43 kcal" },
         { "@type": "ListItem", "position": 3, "name": "Piggelin – 49 kcal" },
         { "@type": "ListItem", "position": 4, "name": "Päronbris – 60 kcal" },
@@ -1190,9 +1213,12 @@
 
     // Fallback: visa rubrikerna direkt om GSAP saknas eller användaren vill slippa rörelse
     if (!window.gsap || !window.SplitText || !window.ScrollTrigger || reduceMotion) {
+      window.__splitReady = true;
       headings.forEach(function (h) { h.style.visibility = 'visible'; });
       return;
     }
+
+    window.__splitReady = true;
 
     gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -1217,12 +1243,15 @@
         charsClass: 'letter',
         onSplit: function (instance) {
           var config = splitConfig[type];
+          // Rubriker som redan syns vid laddning spelas direkt. Med ScrollTrigger
+          // fastnar de i from-läget (utanför masken = osynliga) tills man skrollar.
+          var inView = heading.getBoundingClientRect().top < window.innerHeight;
           return gsap.from(instance[type], {
             yPercent: 150,
             duration: config.duration,
             stagger: config.stagger,
             ease: 'expo.out',
-            scrollTrigger: {
+            scrollTrigger: inView ? undefined : {
               trigger: heading,
               start: 'clamp(top 80%)',
               once: true
