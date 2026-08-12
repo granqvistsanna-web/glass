@@ -528,7 +528,6 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
   white-space: nowrap;
 }
 .kcal small { font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
-.kcal--tbd { background: var(--surface-2); color: var(--ink-2); border-color: var(--line); font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
 
 .row[data-band="etta"]   { --band: var(--pink); }
 .row[data-band="etta"] .kcal { color: var(--pink-ink); }
