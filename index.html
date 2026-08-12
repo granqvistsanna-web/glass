@@ -195,6 +195,8 @@
   /* ============ Masked Text Reveal — OSMO (GSAP SplitText) ============ */
   /* Göms bara när JS finns; blir synlig igen om GSAP saknas eller reduced motion gäller */
   .js [data-split="heading"] { visibility: hidden; }
+  /* Maskerna klipper vid radrutan (line-height ≤ 1) — ge Å-ringar och nedstaplar luft utan layoutskift */
+  .line-mask { padding-block: .2em; margin-block: -.2em; }
 
   /* ============ Bouncy CTA — OSMO "Tilting Bouncing Button" (Ilja van Eck) ============ */
   :root {
@@ -927,23 +929,23 @@
 
       <div class="row" data-band="mellan">
         <div class="rank">•</div>
-        <div><div class="name">NICK'S Sea Salt Caramel</div><div class="kind">Pint, 473 ml</div></div>
-        <div class="kind">Utan tillsatt socker</div>
-        <div class="kcal">—</div>
+        <div><div class="name">NICK'S Sea Salt Caramel</div><div class="kind">Pint, 473 ml · 5,9 g protein/100 ml</div></div>
+        <div class="kind">Lättast av NICK'S pints</div>
+        <div class="kcal">105 <small>kcal/100 ml</small></div>
       </div>
 
       <div class="row" data-band="mellan">
         <div class="rank">•</div>
-        <div><div class="name">NICK'S Peanut Butter Chocolate</div><div class="kind">Pint, 473 ml</div></div>
+        <div><div class="name">NICK'S Peanut Butter Chocolate</div><div class="kind">Pint, 473 ml · 6,6 g protein/100 ml</div></div>
         <div class="kind">Utan tillsatt socker</div>
-        <div class="kcal">—</div>
+        <div class="kcal">133 <small>kcal/100 ml</small></div>
       </div>
 
       <div class="row" data-band="mellan">
         <div class="rank">•</div>
-        <div><div class="name">NICK'S Brownie Cookie Dough</div><div class="kind">Pint, 473 ml</div></div>
-        <div class="kind">Utan tillsatt socker</div>
-        <div class="kcal">—</div>
+        <div><div class="name">NICK'S Brownie Cookie Dough</div><div class="kind">Pint, 473 ml · 7,8 g protein/100 ml</div></div>
+        <div class="kind">Mest protein av NICK'S pints</div>
+        <div class="kcal">131 <small>kcal/100 ml</small></div>
       </div>
 
       <div class="row" data-band="tyngst">
@@ -1215,7 +1217,7 @@
         onSplit: function (instance) {
           var config = splitConfig[type];
           return gsap.from(instance[type], {
-            yPercent: 110,
+            yPercent: 150,
             duration: config.duration,
             stagger: config.stagger,
             ease: 'expo.out',
