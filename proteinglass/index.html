@@ -22,8 +22,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="/favicon.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="144x144" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#45C6E0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B0722" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/styles.css">
 <style>
   /* ===== Omräknaren ===== */
@@ -215,7 +217,7 @@
       <div class="card">
         <span class="metric">Fällan</span>
         <h3>122 kcal låter som en glass</h3>
-        <p>Men det är per 100 gram. Tar du halva pinten är du på tre gånger så mycket, utan att siffran på paketet har ändrats.</p>
+        <p>Men det är per 100 gram. Tar du 300 gram är du på tre gånger så mycket, utan att siffran på paketet har ändrats.</p>
       </div>
       <div class="card">
         <span class="metric">Tvisten</span>
@@ -244,10 +246,10 @@
 
     <div class="calc">
       <div class="calc-presets" role="group" aria-label="Snabbval">
-        <button type="button" class="chip" data-kcal="122" data-protein="6.2" data-gram="150" data-unit="g">NICK'S Strawberry White</button>
-        <button type="button" class="chip" data-kcal="170" data-protein="13" data-gram="150" data-unit="g">Lohilo Strawberry White</button>
-        <button type="button" class="chip" data-kcal="105" data-protein="5.9" data-gram="150" data-unit="ml">NICK'S Sea Salt Caramel</button>
-        <button type="button" class="chip" data-kcal="259" data-protein="" data-gram="51" data-unit="g">NICK'S Crunchy Almond</button>
+        <button type="button" class="chip" aria-pressed="true" data-kcal="122" data-protein="6.2" data-gram="150" data-unit="g">NICK'S Strawberry White</button>
+        <button type="button" class="chip" aria-pressed="false" data-kcal="170" data-protein="13" data-gram="150" data-unit="g">Lohilo Strawberry White</button>
+        <button type="button" class="chip" aria-pressed="false" data-kcal="105" data-protein="5.9" data-gram="150" data-unit="ml">NICK'S Sea Salt Caramel</button>
+        <button type="button" class="chip" aria-pressed="false" data-kcal="259" data-protein="" data-gram="51" data-unit="g">NICK'S Crunchy Almond</button>
       </div>
 
       <div class="calc-fields">
@@ -279,7 +281,7 @@
     <p class="section-note">
       Grupperad efter den enhet tillverkaren själv använder. Det är det enda hederliga sättet.
       Inom en grupp går siffrorna att jämföra rakt av, mellan grupperna gör de inte det.
-      Lägst först i varje grupp.
+      Lägst först i varje grupp, och färgen säger bara var i sin egen grupp raden ligger.
     </p>
 
     <div class="board board--wide">
@@ -302,7 +304,7 @@
         <div class="kcal">90 <small>kcal/st</small></div>
       </div>
 
-      <div class="row" data-band="latt">
+      <div class="row" data-band="tyngst">
         <div class="rank">•</div>
         <div>
           <div class="name">NICK'S Crunchy Almond</div>
@@ -324,7 +326,7 @@
         <div class="kcal">122 <small>kcal/100 g</small></div>
       </div>
 
-      <div class="row" data-band="mellan">
+      <div class="row" data-band="tyngst">
         <div class="rank">•</div>
         <div>
           <div class="name">Lohilo Strawberry White</div>
@@ -368,9 +370,9 @@
     </div>
 
     <p class="legend">
-      <span><i style="background:#F0357F"></i>Lägst per styck</span>
+      <span><i style="background:#F0357F"></i>Lägst kalorier per styck</span>
       <span><i style="background:#7ED04B"></i>Lägst i sin grupp</span>
-      <span><i style="background:#45C6E0"></i>Mellanläge</span>
+      <span><i style="background:#45C6E0"></i>Mellanläge i sin grupp</span>
       <span><i style="background:#FF7433"></i>Högst i sin grupp</span>
     </p>
 
@@ -555,6 +557,27 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.kalorisnalglass.se/#org",
+      "name": "Kalorisnål Glass",
+      "url": "https://www.kalorisnalglass.se/",
+      "logo": "https://www.kalorisnalglass.se/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.kalorisnalglass.se/#website",
+      "url": "https://www.kalorisnalglass.se/",
+      "name": "Kalorisnål Glass",
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "inLanguage": "sv-SE"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.kalorisnalglass.se/#sanna",
+      "name": "Sanna",
+      "url": "https://www.kalorisnalglass.se/om/"
+    },
+    {
       "@type": "WebPage",
       "@id": "https://www.kalorisnalglass.se/proteinglass/#webpage",
       "url": "https://www.kalorisnalglass.se/proteinglass/",
@@ -562,7 +585,11 @@
       "name": "Proteinglass låg kalorier 2026 – kcal och protein per portion",
       "description": "Proteinglass med låg kalorihalt 2026: kcal och protein per portion för NICK'S, Lohilo och Hemglass, plus omräknaren från per 100 g till hel bägare.",
       "inLanguage": "sv-SE",
+      "datePublished": "2026-08-12",
       "dateModified": "2026-08-12",
+      "author": { "@id": "https://www.kalorisnalglass.se/#sanna" },
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "image": "https://www.kalorisnalglass.se/og-image.png",
       "about": { "@type": "Thing", "name": "Proteinglass" },
       "mainEntity": { "@id": "https://www.kalorisnalglass.se/proteinglass/#lista" },
       "speakable": {
@@ -652,7 +679,11 @@
     }
 
     [kcalEl, protEl, gramEl].forEach(function (el) {
-      el.addEventListener('input', render);
+      el.addEventListener('input', function () {
+        // Skriver man egna siffror stämmer inget snabbval längre — släpp markeringen
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        render();
+      });
     });
 
     chips.forEach(function (chip) {

@@ -15,10 +15,17 @@
 <meta property="og:title" content="Om Kalorisnål Glass – så rankar vi glass per styck">
 <meta property="og:description" content="Metoden bakom topplistan: kalorier per styck, siffror från förpackningarna och en enda sorteringsnyckel.">
 <meta property="og:url" content="https://www.kalorisnalglass.se/om/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://www.kalorisnalglass.se/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kalorisnål Glass – så rankas Sveriges glassar efter kalorier per styck">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="/favicon.png" sizes="any" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="144x144" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F0357F" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B0722" media="(prefers-color-scheme: dark)">
 
 <style>
   /* ================= Tokens ================= */
@@ -27,9 +34,11 @@
     --cream-2:    #FFE9CB;
     --ink:        #2E0F3D;
     --ink-2:      #5C3A6B;
-    --muted:      #8A6E97;
+    --muted:      #7A5C8A;
 
     --pink:       #F0357F;
+    /* Rosa text på ljus botten behöver mörkare ton för att klara 4,5:1 */
+    --pink-text:  #C9165C;
     --pink-ink:   #FFF3E2;
     --sun:        #FFC730;
     --lime:       #7ED04B;
@@ -50,6 +59,7 @@
       --ink:       #FFEEDA;
       --ink-2:     #E2C9DC;
       --muted:     #B294BE;
+      --pink-text: #FF7FAE;
       --ground:    #1B0722;
       --surface:   #2A0F35;
       --surface-2: #3A1747;
@@ -64,6 +74,7 @@
     --ink:       #FFEEDA;
     --ink-2:     #E2C9DC;
     --muted:     #B294BE;
+    --pink-text: #FF7FAE;
     --ground:    #1B0722;
     --surface:   #2A0F35;
     --surface-2: #3A1747;
@@ -76,7 +87,8 @@
     --cream:     #FFF3E2;
     --ink:       #2E0F3D;
     --ink-2:     #5C3A6B;
-    --muted:     #8A6E97;
+    --muted:     #7A5C8A;
+    --pink-text: #C9165C;
     --ground:    #FFF3E2;
     --surface:   #FFFFFF;
     --surface-2: #FFE9CB;
@@ -86,8 +98,9 @@
     --pop-lg:    7px 7px 0 #2E0F3D;
   }
 
-  /* Chips/badges always sit on a light fill, so their text stays plum in both themes */
-  :root { --on-bright: #2E0F3D; }
+  /* Chips/badges always sit on a light fill, so their text stays plum in both themes.
+     The pink accent inside them must likewise never flip to the dark-mode tint. */
+  :root { --on-bright: #2E0F3D; --pink-on-bright: #C9165C; }
 
   :root {
     --display: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Avenir Next", Futura, "Trebuchet MS", sans-serif;
@@ -160,7 +173,9 @@
     margin: 0;
     color: var(--pink-ink);
   }
-  h1 em { font-style: normal; display: block; opacity: .78; }
+  /* Samma underrubriksskala som övriga sidor (0.4em), annars konkurrerar
+     underraden med rubriken nu när H1 bär hela sajtnamnet */
+  h1 em { font-style: normal; display: block; font-size: .4em; letter-spacing: 0; opacity: .78; margin-top: .38em; }
 
   .standfirst {
     max-width: 46ch;
@@ -265,12 +280,12 @@
     text-decoration: none;
     white-space: nowrap;
   }
-  .floatnav__brand span { color: var(--pink); }
+  .floatnav__brand span { color: var(--pink-text); }
   .floatnav .toc a {
     color: var(--ink);
     border-bottom-color: color-mix(in srgb, var(--ink) 30%, transparent);
   }
-  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink); color: var(--pink); }
+  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink-text); color: var(--pink-text); }
   @media (max-width: 640px) {
     .floatnav { gap: 14px; padding: 9px 16px; }
     .floatnav__brand span { display: none; }
@@ -291,7 +306,7 @@
     font-variant-numeric: tabular-nums;
     box-shadow: 3px 3px 0 rgba(46,15,61,.28);
   }
-  .stat b { color: var(--pink); }
+  .stat b { color: var(--pink-on-bright); }
 
   /* ================= Sections ================= */
   section { margin-top: 64px; }
@@ -299,6 +314,11 @@
 
   h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppercase; margin: 0 0 10px; }
   .section-note { color: var(--ink-2); font-size: 1rem; margin: 0 0 24px; max-width: 58ch; }
+
+  /* Grundton för länkar i löptext. Utan den ärver de webbläsarens blå, som både
+     bryter mot färgskalan och faller under 4,5:1 i mörkt läge. */
+  main a:not([class]) { color: var(--pink-text); font-weight: 600; }
+  .slide-card a:not([class]), .vem-card a:not([class]) { color: var(--on-bright); font-weight: 700; text-underline-offset: 3px; }
 
   /* ================= Kort svar ================= */
   .tldr {
@@ -314,7 +334,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .05em;
-    color: var(--pink);
+    color: var(--pink-text);
     margin-right: 4px;
   }
 
@@ -568,9 +588,9 @@
 <body data-scrolling-started="false" data-scrolling-direction="up">
 
 <div class="floatnav">
-  <a href="../" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
+  <a href="/" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
   <nav class="toc" aria-label="Snabbnavigering">
-    <a href="../">Topplistan</a>
+    <a href="/#topplista">Topplistan</a>
     <a href="#metod">Metoden</a>
     <a href="#vem">Vem</a>
   </nav>
@@ -585,15 +605,15 @@
   </div>
   <div class="wrap">
     <div class="brandrow">
-      <a class="brand" href="../">Kalorisnål <span>Glass</span></a>
+      <a class="brand" href="/">Kalorisnål <span>Glass</span></a>
       <nav class="toc" aria-label="Innehåll">
-        <a href="../">Topplistan</a>
+        <a href="/#topplista">Topplistan</a>
         <a href="#metod">Metoden</a>
         <a href="#vem">Vem</a>
       </nav>
     </div>
 
-    <h1>Om sidan<em>glass, räknad som den äts</em></h1>
+    <h1>Om Kalorisnål Glass<em>glass, räknad som den äts</em></h1>
 
     <p class="standfirst">
       Kalorisnål Glass är en enda lång lista med ett enda syfte: att göra valet vid frysdisken
@@ -763,7 +783,7 @@
   <section class="outro" aria-label="Till topplistan">
     <h2>Nog om oss: glassen väntar</h2>
     <p class="section-note">Hela rankningen, från 32 till 260 kcal, finns på startsidan.</p>
-    <a href="../" class="btn-bounce" style="margin-top: 6px;">
+    <a href="/#topplista" class="btn-bounce" style="margin-top: 6px;">
       <div class="btn-bounce-bg"></div>
       <div class="btn-bounce-text__wrap">
         <span class="btn-bounce-text">Till topplistan →</span>
@@ -793,6 +813,29 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.kalorisnalglass.se/#org",
+      "name": "Kalorisnål Glass",
+      "url": "https://www.kalorisnalglass.se/",
+      "logo": "https://www.kalorisnalglass.se/logo.png",
+      "founder": { "@id": "https://www.kalorisnalglass.se/#sanna" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.kalorisnalglass.se/#website",
+      "url": "https://www.kalorisnalglass.se/",
+      "name": "Kalorisnål Glass",
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "inLanguage": "sv-SE"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.kalorisnalglass.se/#sanna",
+      "name": "Sanna",
+      "url": "https://www.kalorisnalglass.se/om/",
+      "description": "Driver Kalorisnål Glass och för kalkylarket bakom rankningen. Ligger också bakom glassmärket Sannany."
+    },
+    {
       "@type": "AboutPage",
       "@id": "https://www.kalorisnalglass.se/om/#webpage",
       "url": "https://www.kalorisnalglass.se/om/",
@@ -800,7 +843,12 @@
       "name": "Om Kalorisnål Glass – så rankar vi glass per styck",
       "description": "Metoden bakom topplistan: kalorier per styck, siffror från tillverkarnas förpackningar, en enda sorteringsnyckel och öppna kort om Sannany.",
       "inLanguage": "sv-SE",
+      "datePublished": "2026-08-12",
       "dateModified": "2026-08-12",
+      "author": { "@id": "https://www.kalorisnalglass.se/#sanna" },
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "image": "https://www.kalorisnalglass.se/og-image.png",
+      "mainEntity": { "@id": "https://www.kalorisnalglass.se/#org" },
       "breadcrumb": { "@id": "https://www.kalorisnalglass.se/om/#breadcrumb" }
     },
     {

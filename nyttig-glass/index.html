@@ -22,8 +22,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="/favicon.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="144x144" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#7ED04B" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B0722" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body data-scrolling-started="false" data-scrolling-direction="up">
@@ -562,6 +564,27 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.kalorisnalglass.se/#org",
+      "name": "Kalorisnål Glass",
+      "url": "https://www.kalorisnalglass.se/",
+      "logo": "https://www.kalorisnalglass.se/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.kalorisnalglass.se/#website",
+      "url": "https://www.kalorisnalglass.se/",
+      "name": "Kalorisnål Glass",
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "inLanguage": "sv-SE"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.kalorisnalglass.se/#sanna",
+      "name": "Sanna",
+      "url": "https://www.kalorisnalglass.se/om/"
+    },
+    {
       "@type": "WebPage",
       "@id": "https://www.kalorisnalglass.se/nyttig-glass/#webpage",
       "url": "https://www.kalorisnalglass.se/nyttig-glass/",
@@ -569,7 +592,11 @@
       "name": "Nyttig glass 2026 – de nyttigaste glassarna i Sverige",
       "description": "Nyttig glass 2026: Sveriges glassar betygsatta på kalorier, tillsatt socker, mättnad och ingredienslista. Sannany och NICK'S toppar, Piggelin är lätt men tom.",
       "inLanguage": "sv-SE",
+      "datePublished": "2026-08-12",
       "dateModified": "2026-08-12",
+      "author": { "@id": "https://www.kalorisnalglass.se/#sanna" },
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "image": "https://www.kalorisnalglass.se/og-image.png",
       "about": { "@type": "Thing", "name": "Nyttig glass" },
       "mainEntity": { "@id": "https://www.kalorisnalglass.se/nyttig-glass/#lista" },
       "speakable": {

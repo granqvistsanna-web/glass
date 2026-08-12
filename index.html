@@ -10,7 +10,7 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="google-site-verification" content="parl-huP4s16xqr0qvLGiXvKXNknpA-ihZ_wbgCuyAg">
 
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:site_name" content="Kalorisnål Glass">
 <meta property="og:title" content="Kalorisnål glass i Sverige 2026 – topplistan med minst kalorier">
@@ -23,16 +23,18 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="/favicon.png" sizes="any" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="144x144" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F0357F" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B0722" media="(prefers-color-scheme: dark)">
 
 <script>
   document.documentElement.classList.add('js');
-  // Skyddsnät: rubrikerna göms bara medan GSAP laddas. Svarar inte CDN:et i tid
-  // visas de ändå — en rubrik får aldrig fastna osynlig.
+  // Skyddsnät: rubrikerna göms bara medan GSAP laddas. Kommer skripten inte fram
+  // i tid visas de ändå — en rubrik får aldrig fastna osynlig.
   setTimeout(function () {
     if (!window.__splitReady) document.documentElement.classList.remove('js');
-  }, 2500);
+  }, 1500);
 </script>
 
 <style>
@@ -42,9 +44,11 @@
     --cream-2:    #FFE9CB;
     --ink:        #2E0F3D;
     --ink-2:      #5C3A6B;
-    --muted:      #8A6E97;
+    --muted:      #7A5C8A;
 
     --pink:       #F0357F;
+    /* Rosa text på ljus botten behöver mörkare ton för att klara 4,5:1 */
+    --pink-text:  #C9165C;
     --pink-ink:   #FFF3E2;
     --sun:        #FFC730;
     --lime:       #7ED04B;
@@ -65,6 +69,7 @@
       --ink:       #FFEEDA;
       --ink-2:     #E2C9DC;
       --muted:     #B294BE;
+      --pink-text: #FF7FAE;
       --ground:    #1B0722;
       --surface:   #2A0F35;
       --surface-2: #3A1747;
@@ -79,6 +84,7 @@
     --ink:       #FFEEDA;
     --ink-2:     #E2C9DC;
     --muted:     #B294BE;
+    --pink-text: #FF7FAE;
     --ground:    #1B0722;
     --surface:   #2A0F35;
     --surface-2: #3A1747;
@@ -91,7 +97,8 @@
     --cream:     #FFF3E2;
     --ink:       #2E0F3D;
     --ink-2:     #5C3A6B;
-    --muted:     #8A6E97;
+    --muted:     #7A5C8A;
+    --pink-text: #C9165C;
     --ground:    #FFF3E2;
     --surface:   #FFFFFF;
     --surface-2: #FFE9CB;
@@ -101,8 +108,9 @@
     --pop-lg:    7px 7px 0 #2E0F3D;
   }
 
-  /* Chips/badges always sit on a light fill, so their text stays plum in both themes */
-  :root { --on-bright: #2E0F3D; }
+  /* Chips/badges always sit on a light fill, so their text stays plum in both themes.
+     The pink accent inside them must likewise never flip to the dark-mode tint. */
+  :root { --on-bright: #2E0F3D; --pink-on-bright: #C9165C; }
 
   :root {
     --display: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Avenir Next", Futura, "Trebuchet MS", sans-serif;
@@ -282,12 +290,12 @@
     text-decoration: none;
     white-space: nowrap;
   }
-  .floatnav__brand span { color: var(--pink); }
+  .floatnav__brand span { color: var(--pink-text); }
   .floatnav .toc a {
     color: var(--ink);
     border-bottom-color: color-mix(in srgb, var(--ink) 30%, transparent);
   }
-  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink); color: var(--pink); }
+  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink-text); color: var(--pink-text); }
   @media (max-width: 640px) {
     .floatnav { gap: 14px; padding: 9px 16px; }
     .floatnav__brand span { display: none; }
@@ -326,7 +334,7 @@
     font-variant-numeric: tabular-nums;
     box-shadow: 3px 3px 0 rgba(46,15,61,.28);
   }
-  .stat b { color: var(--pink); }
+  .stat b { color: var(--pink-on-bright); }
 
   /* ================= Sections ================= */
   section { margin-top: 64px; }
@@ -334,6 +342,11 @@
 
   h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppercase; margin: 0 0 10px; }
   .section-note { color: var(--ink-2); font-size: 1rem; margin: 0 0 24px; max-width: 58ch; }
+
+  /* Grundton för länkar i löptext. Utan den ärver de webbläsarens blå, som både
+     bryter mot färgskalan och faller under 4,5:1 i mörkt läge. */
+  main a:not([class]) { color: var(--pink-text); font-weight: 600; }
+  .card a:not([class]), .champion a:not([class]) { color: var(--on-bright); font-weight: 700; text-underline-offset: 3px; }
 
   /* ================= Kort svar ================= */
   .tldr {
@@ -349,7 +362,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .05em;
-    color: var(--pink);
+    color: var(--pink-text);
     margin-right: 4px;
   }
 
@@ -633,7 +646,7 @@
   details .answer { padding: 0 0 20px; color: var(--ink-2); max-width: 62ch; font-weight: 500; }
   details .answer p { margin: 0 0 10px; }
   details .answer p:last-child { margin-bottom: 0; }
-  details .answer a { color: var(--pink); font-weight: 600; }
+  details .answer a { color: var(--pink-text); font-weight: 600; }
 
   /* ================= Footer ================= */
   footer {
@@ -673,7 +686,7 @@
     border-bottom: 3px solid var(--pink);
     padding-bottom: 2px;
   }
-  .more-link:hover, .more-link:focus-visible { color: var(--pink); }
+  .more-link:hover, .more-link:focus-visible { color: var(--pink-text); }
   .more-link:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 
   /* ================= Systersidor ================= */
@@ -720,7 +733,7 @@
 <body data-scrolling-started="false" data-scrolling-direction="up">
 
 <div class="floatnav">
-  <a href="#" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
+  <a href="/" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
   <nav class="toc" aria-label="Snabbnavigering">
     <a href="#topplista">Topplistan</a>
     <a href="/nyttig-glass/">Nyttig glass</a>
@@ -795,7 +808,7 @@
           ingen chokladdoppning. Då blir det inte många kalorier kvar heller.
         </p>
         <p class="stamp">★ Nykomling, i svenska butiker 2026</p>
-        <a class="more" href="sannany/">Hela produktsidan →</a>
+        <a class="more" href="/sannany/">Hela produktsidan →</a>
       </div>
     </article>
   </section>
@@ -808,9 +821,9 @@
     </p>
 
     <div class="filters" role="group" aria-label="Filtrera listan">
-      <button class="chip" data-filter="alla" aria-pressed="true">Alla</button>
-      <button class="chip" data-filter="isglass" aria-pressed="false">Isglass &amp; sorbet</button>
-      <button class="chip" data-filter="gradde" aria-pressed="false">Med grädde</button>
+      <button type="button" class="chip" data-filter="alla" aria-pressed="true">Alla</button>
+      <button type="button" class="chip" data-filter="isglass" aria-pressed="false">Isglass &amp; sorbet</button>
+      <button type="button" class="chip" data-filter="gradde" aria-pressed="false">Med grädde</button>
     </div>
 
     <div class="board">
@@ -958,8 +971,8 @@
     </div>
 
     <p class="legend">
-      <span><i style="background:#7ED04B"></i>Under 60 kcal</span>
-      <span><i style="background:#45C6E0"></i>60–95 kcal</span>
+      <span><i style="background:#7ED04B"></i>Upp till 60 kcal</span>
+      <span><i style="background:#45C6E0"></i>61–95 kcal</span>
       <span><i style="background:#FF7433"></i>Över 95 kcal</span>
     </p>
   </section>
@@ -1148,7 +1161,7 @@
         <div class="answer">
           <p>Sannany är en nykomling som lanseras i svenska butiker under 2026. Håll utkik i
           frysdisken. De nitton andra glassarna i listan finns att köpa redan nu. Allt om glassen
-          finns på <a href="sannany/">produktsidan för Sannany Vanilj &amp; havssalt</a>.</p>
+          finns på <a href="/sannany/">produktsidan för Sannany Vanilj &amp; havssalt</a>.</p>
         </div>
       </details>
 
@@ -1241,10 +1254,18 @@
       ]
     },
     {
+      "@type": "Person",
+      "@id": "https://www.kalorisnalglass.se/#sanna",
+      "name": "Sanna",
+      "url": "https://www.kalorisnalglass.se/om/",
+      "description": "Driver Kalorisnål Glass och för kalkylarket bakom rankningen."
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.kalorisnalglass.se/#website",
       "url": "https://www.kalorisnalglass.se/",
       "name": "Kalorisnål Glass",
+      "description": "Sveriges glassar rankade efter kalorier per styck.",
       "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
       "inLanguage": "sv-SE"
     },
@@ -1253,7 +1274,7 @@
       "@id": "https://www.kalorisnalglass.se/#webpage",
       "url": "https://www.kalorisnalglass.se/",
       "isPartOf": { "@id": "https://www.kalorisnalglass.se/#website" },
-      "name": "Kalorisnål glass 2026 – topplistan över nyttig glass i Sverige",
+      "name": "Kalorisnål glass i Sverige 2026 – topplistan med minst kalorier",
       "description": "Kalorisnål glass 2026: Sveriges 20 glassar med minst kalorier per styck, plus kalorisnål proteinglass och pints.",
       "about": { "@type": "Thing", "name": "Kalorisnål glass" },
       "keywords": "kalorisnål glass 2026, nyttig glass, glass med minst kalorier, proteinglass",
@@ -1261,6 +1282,9 @@
       "image": "https://www.kalorisnalglass.se/og-image.png",
       "datePublished": "2026-08-12",
       "dateModified": "2026-08-12",
+      "author": { "@id": "https://www.kalorisnalglass.se/#sanna" },
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "mainEntity": { "@id": "https://www.kalorisnalglass.se/#topplista" },
       "speakable": {
         "@type": "SpeakableSpecification",
         "cssSelector": ["#kort-svar"]
@@ -1268,6 +1292,7 @@
     },
     {
       "@type": "ItemList",
+      "@id": "https://www.kalorisnalglass.se/#topplista",
       "name": "Kalorisnål glass 2026 – Sveriges glassar med minst kalorier per styck",
       "description": "Rankning av de kalorisnålaste glassarna i svensk frysdisk 2026, räknat i kcal per styck.",
       "itemListOrder": "https://schema.org/ItemListOrderAscending",
@@ -1299,12 +1324,14 @@
 }
 </script>
 
-<script src="/vendor/gsap.min.js"></script>
-<script src="/vendor/ScrollTrigger.min.js"></script>
-<script src="/vendor/SplitText.min.js"></script>
+<script src="/vendor/gsap.min.js" defer></script>
+<script src="/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/vendor/SplitText.min.js" defer></script>
 <script>
   // OSMO: Masked Text Reveal (GSAP SplitText)
-  (function () {
+  // Biblioteken laddas med defer så de inte blockerar första målningen. Defer
+  // körs före DOMContentLoaded, så gsap finns när den här funktionen startar.
+  document.addEventListener('DOMContentLoaded', function () {
     var headings = document.querySelectorAll('[data-split="heading"]');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1359,7 +1386,7 @@
     });
 
     gsap.set('[data-split="heading"]', { autoAlpha: 1 });
-  })();
+  });
 </script>
 <script>
   // OSMO: Detect Scrolling Direction (Up/Down)
@@ -1380,10 +1407,13 @@
   })();
 
   (function () {
-    var board = document.querySelector('.board');
-    var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
-    var empty = document.querySelector('.empty');
-    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+    // Bara topplistans tavla filtreras. Proteinsektionen har en egen tavla och
+    // egna enheter — den ska aldrig tömmas av ett filter i listan ovanför.
+    var board = document.querySelector('#topplista .board');
+    if (!board) return;
+    var rows = Array.prototype.slice.call(board.querySelectorAll('.row'));
+    var empty = board.querySelector('.empty');
+    var chips = Array.prototype.slice.call(document.querySelectorAll('#topplista .chip'));
 
     board.classList.add('is-animating');
     requestAnimationFrame(function () {

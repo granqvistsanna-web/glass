@@ -22,8 +22,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="/favicon.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="144x144" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FF7433" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B0722" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body data-scrolling-started="false" data-scrolling-direction="up">
@@ -67,7 +69,7 @@
         <div class="stats">
           <span class="stat"><b>12</b> lätta glassar</span>
           <span class="stat">Smakbetyg <b>1–5</b></span>
-          <span class="stat">Bästa köp: <b>8 kcal/p</b></span>
+          <span class="stat">Lägst <b>8 kcal/p</b></span>
           <span class="stat">Under <b>135 kcal</b></span>
         </div>
         <a href="#smakbetyg" class="btn-bounce">
@@ -345,7 +347,7 @@
         <span class="want">Grädde</span>
         <h3>Det ska kännas krämigt</h3>
         <p class="pick">→ Valle, 110 kcal</p>
-        <p>Den lättaste riktiga gräddglassen i listan. Sorbet med glasskärna som Solero Exotic (98 kcal) kommer nära för elva kalorier mindre.</p>
+        <p>Den lättaste riktiga gräddglassen i listan. Sorbet med glasskärna som Solero Exotic (98 kcal) kommer nära för tolv kalorier mindre.</p>
       </div>
       <div class="need" style="--dot: var(--aqua)">
         <span class="want">Fruktigt</span>
@@ -371,7 +373,7 @@
     <ul class="tips">
       <li style="--dot: var(--orange)">
         <h3>Haribo Push-up: 78 kcal, smakbetyg 2</h3>
-        <p>39 kcal per smakpoäng är sämsta bytet i den lätta klassen. För tio kalorier mindre får du Twister med ett helt smakbetyg mer, och för nio kalorier till får du Solero Strawberry Twist med två.</p>
+        <p>39 kcal per smakpoäng är sämsta bytet i den lätta klassen. För två kalorier mindre får du Twister med ett helt smakbetyg mer, och för sjutton kalorier till får du Solero Strawberry Twist med två.</p>
       </li>
       <li style="--dot: var(--sun)">
         <h3>Mini Twister: 43 kcal, smakbetyg 2</h3>
@@ -510,6 +512,27 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.kalorisnalglass.se/#org",
+      "name": "Kalorisnål Glass",
+      "url": "https://www.kalorisnalglass.se/",
+      "logo": "https://www.kalorisnalglass.se/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.kalorisnalglass.se/#website",
+      "url": "https://www.kalorisnalglass.se/",
+      "name": "Kalorisnål Glass",
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "inLanguage": "sv-SE"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.kalorisnalglass.se/#sanna",
+      "name": "Sanna",
+      "url": "https://www.kalorisnalglass.se/om/"
+    },
+    {
       "@type": "WebPage",
       "@id": "https://www.kalorisnalglass.se/god-glass-lag-kalori/#webpage",
       "url": "https://www.kalorisnalglass.se/god-glass-lag-kalori/",
@@ -517,7 +540,11 @@
       "name": "God glass med låg kalori 2026 – smak per kalori i Sverige",
       "description": "God glass med låg kalori 2026: vilka lätta glassar som faktiskt smakar dessert. Smakbetyg satt mot kalorierna, plus bästa valet för varje sug.",
       "inLanguage": "sv-SE",
+      "datePublished": "2026-08-12",
       "dateModified": "2026-08-12",
+      "author": { "@id": "https://www.kalorisnalglass.se/#sanna" },
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "image": "https://www.kalorisnalglass.se/og-image.png",
       "about": { "@type": "Thing", "name": "God glass med låg kalorihalt" },
       "mainEntity": { "@id": "https://www.kalorisnalglass.se/god-glass-lag-kalori/#lista" },
       "speakable": {

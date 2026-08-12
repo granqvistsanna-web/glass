@@ -11,9 +11,10 @@
   --cream-2:    #FFE9CB;
   --ink:        #2E0F3D;
   --ink-2:      #5C3A6B;
-  --muted:      #8A6E97;
+  --muted:      #7A5C8A;
 
   --pink:       #F0357F;
+  --pink-text:  #C9165C;
   --pink-ink:   #FFF3E2;
   --sun:        #FFC730;
   --lime:       #7ED04B;
@@ -34,6 +35,7 @@
     --ink:       #FFEEDA;
     --ink-2:     #E2C9DC;
     --muted:     #B294BE;
+    --pink-text: #FF7FAE;
     --ground:    #1B0722;
     --surface:   #2A0F35;
     --surface-2: #3A1747;
@@ -48,6 +50,7 @@
   --ink:       #FFEEDA;
   --ink-2:     #E2C9DC;
   --muted:     #B294BE;
+  --pink-text: #FF7FAE;
   --ground:    #1B0722;
   --surface:   #2A0F35;
   --surface-2: #3A1747;
@@ -60,7 +63,8 @@
   --cream:     #FFF3E2;
   --ink:       #2E0F3D;
   --ink-2:     #5C3A6B;
-  --muted:     #8A6E97;
+  --muted:     #7A5C8A;
+  --pink-text: #C9165C;
   --ground:    #FFF3E2;
   --surface:   #FFFFFF;
   --surface-2: #FFE9CB;
@@ -70,8 +74,9 @@
   --pop-lg:    7px 7px 0 #2E0F3D;
 }
 
-/* Chips/badges sitter alltid på en ljus fyllning — texten stannar plommon i båda lägena */
-:root { --on-bright: #2E0F3D; }
+/* Chips/badges sitter alltid på en ljus fyllning — texten stannar plommon i båda lägena.
+   Samma sak för den rosa accenten i dem: den får aldrig byta till mörkerlägets ljusa ton. */
+:root { --on-bright: #2E0F3D; --pink-on-bright: #C9165C; }
 
 :root {
   --display: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Avenir Next", Futura, "Trebuchet MS", sans-serif;
@@ -209,7 +214,7 @@ h1 em { font-style: normal; display: block; font-size: .4em; letter-spacing: 0; 
   font-variant-numeric: tabular-nums;
   box-shadow: 3px 3px 0 rgba(46,15,61,.28);
 }
-.stat b { color: var(--pink); }
+.stat b { color: var(--pink-on-bright); }
 
 /* ============ Popkonst-illustrationer ============ */
 .pop-art { width: min(240px, 54vw); height: auto; display: block; filter: drop-shadow(9px 9px 0 rgba(46,15,61,.9)); }
@@ -289,7 +294,7 @@ h1 em { font-style: normal; display: block; font-size: .4em; letter-spacing: 0; 
   text-decoration: none;
   white-space: nowrap;
 }
-.floatnav__brand span { color: var(--pink); }
+.floatnav__brand span { color: var(--pink-text); }
 .floatnav .toc a {
   color: var(--ink);
   font-family: var(--display);
@@ -301,7 +306,7 @@ h1 em { font-style: normal; display: block; font-size: .4em; letter-spacing: 0; 
   border-bottom: 2.5px solid color-mix(in srgb, var(--ink) 30%, transparent);
   padding-bottom: 2px;
 }
-.floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink); color: var(--pink); }
+.floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink-text); color: var(--pink-text); }
 .floatnav .toc a:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 @media (max-width: 700px) {
   .floatnav { gap: 14px; padding: 9px 16px; }
@@ -336,6 +341,11 @@ section:first-of-type { margin-top: 52px; }
 h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppercase; margin: 0 0 10px; }
 .section-note { color: var(--ink-2); font-size: 1rem; margin: 0 0 24px; max-width: 60ch; }
 
+/* Grundton för länkar i löptext. Utan den ärver de webbläsarens blå, som både
+   bryter mot färgskalan och faller under 4,5:1 i mörkt läge. */
+main a:not([class]) { color: var(--pink-text); font-weight: 600; }
+.card a:not([class]) { color: var(--on-bright); font-weight: 700; text-underline-offset: 3px; }
+
 /* ================= Kort svar ================= */
 .tldr {
   background: var(--surface);
@@ -351,16 +361,16 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .05em;
-  color: var(--pink);
+  color: var(--pink-text);
   margin-right: 4px;
 }
-.tldr a { color: var(--pink); font-weight: 600; }
+.tldr a { color: var(--pink-text); font-weight: 600; }
 
 /* ================= Löptext ================= */
 .story { max-width: 64ch; color: var(--ink-2); font-weight: 500; }
 .story p { margin: 0 0 14px; }
 .story p:last-child { margin-bottom: 0; }
-.story a { color: var(--pink); font-weight: 600; }
+.story a { color: var(--pink-text); font-weight: 600; }
 
 /* ================= Numrerad lista ================= */
 .ingredients { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 12px; }
@@ -447,7 +457,7 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
   font-variant-numeric: tabular-nums;
 }
 .facts .frow--hero { background: var(--surface-2); border-bottom: 3px solid var(--line); }
-.facts .frow--hero .fvalue { color: var(--pink); font-size: 1.3rem; }
+.facts .frow--hero .fvalue { color: var(--pink-text); font-size: 1.3rem; }
 
 /* ================= Tavlan (rankinglistor) ================= */
 .board {
@@ -502,7 +512,7 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
 }
 .row .kind { font-size: .8rem; color: var(--muted); margin-top: 3px; font-weight: 500; }
 .row .name a { color: inherit; text-decoration: none; border-bottom: 3px solid var(--pink); }
-.row .name a:hover, .row .name a:focus-visible { color: var(--pink); }
+.row .name a:hover, .row .name a:focus-visible { color: var(--pink-text); }
 
 .track {
   height: 14px;
@@ -610,7 +620,7 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
   border-bottom: 3px solid var(--pink);
   padding-bottom: 2px;
 }
-.more-link:hover, .more-link:focus-visible { color: var(--pink); }
+.more-link:hover, .more-link:focus-visible { color: var(--pink-text); }
 .more-link:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 
 .legend {
@@ -649,7 +659,7 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
 .tips h3 { font-size: 1.08rem; margin: 0 0 6px; text-transform: uppercase; line-height: 1.15; }
 .tips p { margin: 0; color: var(--ink-2); font-size: .97rem; max-width: 60ch; font-weight: 500; }
 .tips p + p { margin-top: 8px; }
-.tips a { color: var(--pink); font-weight: 600; }
+.tips a { color: var(--pink-text); font-weight: 600; }
 
 /* ================= Behovsrutor ================= */
 .needs { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
@@ -675,7 +685,7 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppe
   margin-bottom: 14px;
 }
 .need h3 { font-size: 1.18rem; margin: 0 0 6px; text-transform: uppercase; line-height: 1.1; }
-.need .pick { font-family: var(--display); font-weight: 800; color: var(--pink); font-size: .95rem; margin: 0 0 8px; }
+.need .pick { font-family: var(--display); font-weight: 800; color: var(--pink-text); font-size: .95rem; margin: 0 0 8px; }
 .need p { margin: 0; color: var(--ink-2); font-size: .95rem; font-weight: 500; }
 
 /* ================= Utropsblock ================= */
@@ -752,7 +762,7 @@ details summary:focus-visible { outline: 3px solid var(--pink); outline-offset: 
 details .answer { padding: 0 0 20px; color: var(--ink-2); max-width: 64ch; font-weight: 500; }
 details .answer p { margin: 0 0 10px; }
 details .answer p:last-child { margin-bottom: 0; }
-details .answer a { color: var(--pink); font-weight: 600; }
+details .answer a { color: var(--pink-text); font-weight: 600; }
 
 /* ================= Systersidor ================= */
 .siblings { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 14px; }
@@ -805,7 +815,10 @@ footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
   .row { grid-template-columns: 34px 1fr auto; gap: 10px 12px; padding: 15px 16px; }
   .row .rank { grid-row: 1; grid-column: 1; font-size: 1.3rem; }
   .row .kcal { grid-row: 1; grid-column: 3; }
-  .row .track, .row .betyg { grid-row: 2; grid-column: 1 / 4; }
+  /* Tredje kolumnen får en egen rad på mobil — annars trycks den ihop i
+     34 px-spalten och spiller ut över namnet (smakprickar, proteinvärden) */
+  .row .track, .row .betyg, .row .smak, .row > .kind { grid-row: 2; grid-column: 1 / 4; }
+  .row > .kind { margin-top: 2px; }
   .board, .faq, .launch, .facts { border-radius: 22px; }
   .launch { padding: 26px 24px; }
   .launch .btn-bounce { margin-left: 0; }
@@ -831,7 +844,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .is-animating .fill { transition: none; width: var(--w); }
-  .btn-bounce, .btn-bounce-text, .btn-bounce-text__wrap, .floatnav, .sibling { transition: none; }
+  .btn-bounce, .btn-bounce-text, .btn-bounce-text__wrap, .floatnav, .sibling, .chip { transition: none; }
   .ticker__track { animation: none; }
   .pop-art .bob { animation: none; }
 }

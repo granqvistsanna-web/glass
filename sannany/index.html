@@ -22,8 +22,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.kalorisnalglass.se/og-image.png">
 
-<link rel="icon" href="/favicon.png" sizes="any" type="image/png">
+<link rel="icon" href="/favicon.png" sizes="144x144" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FFC730" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B0722" media="(prefers-color-scheme: dark)">
 
 <style>
   /* ================= Tokens ================= */
@@ -32,9 +34,11 @@
     --cream-2:    #FFE9CB;
     --ink:        #2E0F3D;
     --ink-2:      #5C3A6B;
-    --muted:      #8A6E97;
+    --muted:      #7A5C8A;
 
     --pink:       #F0357F;
+    /* Rosa text på ljus botten behöver mörkare ton för att klara 4,5:1 */
+    --pink-text:  #C9165C;
     --pink-ink:   #FFF3E2;
     --sun:        #FFC730;
     --lime:       #7ED04B;
@@ -55,6 +59,7 @@
       --ink:       #FFEEDA;
       --ink-2:     #E2C9DC;
       --muted:     #B294BE;
+      --pink-text: #FF7FAE;
       --ground:    #1B0722;
       --surface:   #2A0F35;
       --surface-2: #3A1747;
@@ -69,6 +74,7 @@
     --ink:       #FFEEDA;
     --ink-2:     #E2C9DC;
     --muted:     #B294BE;
+    --pink-text: #FF7FAE;
     --ground:    #1B0722;
     --surface:   #2A0F35;
     --surface-2: #3A1747;
@@ -81,7 +87,8 @@
     --cream:     #FFF3E2;
     --ink:       #2E0F3D;
     --ink-2:     #5C3A6B;
-    --muted:     #8A6E97;
+    --muted:     #7A5C8A;
+    --pink-text: #C9165C;
     --ground:    #FFF3E2;
     --surface:   #FFFFFF;
     --surface-2: #FFE9CB;
@@ -91,8 +98,9 @@
     --pop-lg:    7px 7px 0 #2E0F3D;
   }
 
-  /* Chips/badges always sit on a light fill, so their text stays plum in both themes */
-  :root { --on-bright: #2E0F3D; }
+  /* Chips/badges always sit on a light fill, so their text stays plum in both themes.
+     The pink accent inside them must likewise never flip to the dark-mode tint. */
+  :root { --on-bright: #2E0F3D; --pink-on-bright: #C9165C; }
 
   :root {
     --display: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Avenir Next", Futura, "Trebuchet MS", sans-serif;
@@ -229,7 +237,7 @@
     font-variant-numeric: tabular-nums;
     box-shadow: 3px 3px 0 rgba(46,15,61,.28);
   }
-  .stat b { color: var(--pink); }
+  .stat b { color: var(--pink-on-bright); }
 
   /* ============ Glasspinnen ============ */
   .pop-art { width: min(250px, 56vw); height: auto; display: block; filter: drop-shadow(9px 9px 0 rgba(46,15,61,.9)); }
@@ -317,7 +325,7 @@
     text-decoration: none;
     white-space: nowrap;
   }
-  .floatnav__brand span { color: var(--pink); }
+  .floatnav__brand span { color: var(--pink-text); }
   .floatnav .toc a {
     color: var(--ink);
     font-family: var(--display);
@@ -329,7 +337,7 @@
     border-bottom: 2.5px solid color-mix(in srgb, var(--ink) 30%, transparent);
     padding-bottom: 2px;
   }
-  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink); color: var(--pink); }
+  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink-text); color: var(--pink-text); }
   .floatnav .toc a:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   @media (max-width: 640px) {
     .floatnav { gap: 14px; padding: 9px 16px; }
@@ -364,6 +372,12 @@
   h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1; text-transform: uppercase; margin: 0 0 10px; }
   .section-note { color: var(--ink-2); font-size: 1rem; margin: 0 0 24px; max-width: 58ch; }
 
+  /* Grundton för länkar i löptext. Utan den ärver de webbläsarens blå, som både
+     bryter mot färgskalan och faller under 4,5:1 i mörkt läge. */
+  main a:not([class]) { color: var(--pink-text); font-weight: 600; }
+  .card a:not([class]) { color: var(--on-bright); font-weight: 700; text-underline-offset: 3px; }
+  .launch a:not([class]) { color: var(--pink-ink); font-weight: 700; text-underline-offset: 3px; }
+
   /* ================= Kort svar ================= */
   .tldr {
     background: var(--surface);
@@ -378,7 +392,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .05em;
-    color: var(--pink);
+    color: var(--pink-text);
     margin-right: 4px;
   }
 
@@ -470,7 +484,7 @@
     font-variant-numeric: tabular-nums;
   }
   .facts .frow--hero { background: var(--surface-2); border-bottom: 3px solid var(--line); }
-  .facts .frow--hero .fvalue { color: var(--pink); font-size: 1.35rem; }
+  .facts .frow--hero .fvalue { color: var(--pink-text); font-size: 1.35rem; }
 
   /* ================= Jämförelse (board) ================= */
   .board {
@@ -569,7 +583,7 @@
     border-bottom: 3px solid var(--pink);
     padding-bottom: 2px;
   }
-  .more-link:hover, .more-link:focus-visible { color: var(--pink); }
+  .more-link:hover, .more-link:focus-visible { color: var(--pink-text); }
   .more-link:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 
   /* ================= Lansering ================= */
@@ -645,7 +659,7 @@
   details .answer { padding: 0 0 20px; color: var(--ink-2); max-width: 62ch; font-weight: 500; }
   details .answer p { margin: 0 0 10px; }
   details .answer p:last-child { margin-bottom: 0; }
-  details .answer a { color: var(--pink); font-weight: 600; }
+  details .answer a { color: var(--pink-text); font-weight: 600; }
 
   /* ================= Footer ================= */
   footer {
@@ -712,12 +726,12 @@
 <body data-scrolling-started="false" data-scrolling-direction="up">
 
 <div class="floatnav">
-  <a href="../" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
+  <a href="/" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
   <nav class="toc" aria-label="Snabbnavigering">
     <a href="#naringsvarden">Fakta</a>
     <a href="#jamforelse">Jämförelse</a>
     <a href="#faq">FAQ</a>
-    <a href="../#topplista">Topplistan</a>
+    <a href="/#topplista">Topplistan</a>
   </nav>
 </div>
 
@@ -730,7 +744,7 @@
   </div>
   <div class="wrap">
     <div class="brandrow">
-      <a class="brand" href="../">Kalorisnål <span>Glass</span></a>
+      <a class="brand" href="/">Kalorisnål <span>Glass</span></a>
       <nav class="toc" aria-label="Innehåll">
         <a href="#naringsvarden">Fakta</a>
         <a href="#jamforelse">Jämförelse</a>
@@ -927,7 +941,7 @@
     <h2>Sannany mot närmaste utmanarna</h2>
     <p class="section-note">
       Samma skala som topplistan: kalorier per hel glass, inte per 100&nbsp;ml.
-      Närmaste utmanaren ligger 17 kcal bort.
+      Närmaste utmanaren ligger 11 kcal bort.
     </p>
 
     <div class="board">
@@ -947,27 +961,34 @@
 
       <div class="row" data-band="latt">
         <div class="rank">2</div>
-        <div><div class="name">Piggelin</div><div class="kind">+17 kcal mot Sannany</div></div>
-        <div class="track"><span class="fill" style="--w:41%; --d:60ms;"></span></div>
-        <div class="kcal">49 <small>kcal</small></div>
+        <div><div class="name">Mini Twister</div><div class="kind">+11 kcal mot Sannany</div></div>
+        <div class="track"><span class="fill" style="--w:36%; --d:60ms;"></span></div>
+        <div class="kcal">43 <small>kcal</small></div>
       </div>
 
       <div class="row" data-band="latt">
         <div class="rank">3</div>
+        <div><div class="name">Piggelin</div><div class="kind">+17 kcal mot Sannany</div></div>
+        <div class="track"><span class="fill" style="--w:41%; --d:120ms;"></span></div>
+        <div class="kcal">49 <small>kcal</small></div>
+      </div>
+
+      <div class="row" data-band="latt">
+        <div class="rank">4</div>
         <div><div class="name">Päronbris</div><div class="kind">+28 kcal mot Sannany</div></div>
-        <div class="track"><span class="fill" style="--w:50%; --d:120ms;"></span></div>
+        <div class="track"><span class="fill" style="--w:50%; --d:180ms;"></span></div>
         <div class="kcal">60 <small>kcal</small></div>
       </div>
 
       <div class="row" data-band="mellan">
-        <div class="rank">4</div>
+        <div class="rank">5</div>
         <div><div class="name">Twister</div><div class="kind">+44 kcal mot Sannany</div></div>
-        <div class="track"><span class="fill" style="--w:63%; --d:180ms;"></span></div>
+        <div class="track"><span class="fill" style="--w:63%; --d:240ms;"></span></div>
         <div class="kcal">76 <small>kcal</small></div>
       </div>
     </div>
 
-    <a class="more-link" href="../#topplista">Se hela topplistan →</a>
+    <a class="more-link" href="/#topplista">Se hela topplistan →</a>
   </section>
 
   <section id="lansering">
@@ -979,7 +1000,7 @@
         du tittar på.
       </p>
       <p class="stamp">★ Lansering: svenska butiker 2026</p>
-      <a href="../#topplista" class="btn-bounce btn-bounce--sun">
+      <a href="/#topplista" class="btn-bounce btn-bounce--sun">
         <div class="btn-bounce-bg"></div>
         <div class="btn-bounce-text__wrap">
           <span class="btn-bounce-text">Hela topplistan →</span>
@@ -997,7 +1018,8 @@
         <summary>Hur många kalorier har Sannany?</summary>
         <div class="answer">
           <p>Sannany Vanilj &amp; havssalt har 32 kcal per styck, lägst av alla glassar i
-          Sveriges topplista 2026. Närmaste utmanaren Piggelin ligger på cirka 49 kcal.</p>
+          Sveriges topplista 2026. Närmaste utmanaren Mini Twister ligger på cirka 43 kcal,
+          följd av Piggelin på 49 kcal.</p>
         </div>
       </details>
 
@@ -1013,7 +1035,7 @@
         <summary>När och var kan jag köpa Sannany?</summary>
         <div class="answer">
           <p>Sannany lanseras i svenska butiker under 2026. Håll utkik i frysdisken. Tills
-          dess finns <a href="../#topplista">de andra kalorisnåla glassarna i topplistan</a> som
+          dess finns <a href="/#topplista">de andra kalorisnåla glassarna i topplistan</a> som
           går att köpa redan nu.</p>
         </div>
       </details>
@@ -1038,7 +1060,7 @@
         <summary>Varför räknas kalorierna per styck och inte per 100 ml?</summary>
         <div class="answer">
           <p>För att det är så glass äts: en hel pinne, inte 100 ml. Hela
-          <a href="../">topplistan på kalorisnalglass.se</a> räknar på samma sätt, så siffrorna
+          <a href="/">topplistan på kalorisnalglass.se</a> räknar på samma sätt, så siffrorna
           går att jämföra rakt av.</p>
         </div>
       </details>
@@ -1066,6 +1088,27 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.kalorisnalglass.se/#org",
+      "name": "Kalorisnål Glass",
+      "url": "https://www.kalorisnalglass.se/",
+      "logo": "https://www.kalorisnalglass.se/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.kalorisnalglass.se/#website",
+      "url": "https://www.kalorisnalglass.se/",
+      "name": "Kalorisnål Glass",
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "inLanguage": "sv-SE"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.kalorisnalglass.se/#sanna",
+      "name": "Sanna",
+      "url": "https://www.kalorisnalglass.se/om/"
+    },
+    {
       "@type": "WebPage",
       "@id": "https://www.kalorisnalglass.se/sannany/#webpage",
       "url": "https://www.kalorisnalglass.se/sannany/",
@@ -1073,7 +1116,11 @@
       "name": "Sannany Vanilj & havssalt – Sveriges mest kalorisnåla glass 2026",
       "description": "Produktsida för Sannany Vanilj & havssalt: fryst havregrädde med äkta vaniljfrön och flingsalt, inget tillsatt socker, 32 kcal per styck. Lanseras i svenska butiker 2026.",
       "inLanguage": "sv-SE",
+      "datePublished": "2026-08-12",
       "dateModified": "2026-08-12",
+      "author": { "@id": "https://www.kalorisnalglass.se/#sanna" },
+      "publisher": { "@id": "https://www.kalorisnalglass.se/#org" },
+      "image": "https://www.kalorisnalglass.se/og-image.png",
       "mainEntity": { "@id": "https://www.kalorisnalglass.se/sannany/#product" },
       "speakable": {
         "@type": "SpeakableSpecification",
@@ -1093,6 +1140,8 @@
       "name": "Sannany Vanilj & havssalt",
       "brand": { "@type": "Brand", "name": "Sannany" },
       "category": "Glass",
+      "image": "https://www.kalorisnalglass.se/og-image.png",
+      "url": "https://www.kalorisnalglass.se/sannany/",
       "description": "Pinnglass på fryst havregrädde med äkta vaniljfrön och flingsalt. Inget tillsatt socker, ingen doppning – 32 kcal per styck. Lanseras i svenska butiker 2026.",
       "additionalProperty": [
         { "@type": "PropertyValue", "name": "Energi per styck", "value": "32 kcal" },
