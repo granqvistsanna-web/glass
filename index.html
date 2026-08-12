@@ -182,7 +182,97 @@
   .toc a:hover, .toc a:focus-visible { border-bottom-color: var(--pink-ink); }
   .toc a:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 
-  section[id] { scroll-margin-top: 24px; }
+  section[id] { scroll-margin-top: 96px; }
+  html { scroll-behavior: smooth; }
+
+  /* ============ Bouncy CTA — OSMO "Tilting Bouncing Button" (Ilja van Eck) ============ */
+  :root {
+    --ease-elastic: linear(0, 0.55 7.5%, 0.85 12%, 0.95 14%, 1.03 16.5%, 1.09 20%, 1.13 22%, 1.14 23%, 1.15 24.5%, 1.15 26%, 1.13 28%, 1.11 31%, 1.05 39%, 1.02 43%, 0.99 47%, 0.98 52%, 0.97 59%, 1.002 81%, 1);
+  }
+  .btn-bounce {
+    color: var(--on-bright);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 30px;
+    padding-left: 1.9em;
+    padding-right: 1.9em;
+    position: relative;
+  }
+  .btn-bounce-bg {
+    z-index: 0;
+    background-color: var(--sun);
+    border: 2.5px solid var(--on-bright);
+    border-radius: 100em;
+    box-shadow: 3px 3px 0 rgba(46,15,61,.35);
+    position: absolute;
+    inset: 0%;
+  }
+  .btn-bounce-text { z-index: 1; display: block; position: relative; }
+  .btn-bounce-text__wrap { padding-top: 1em; padding-bottom: 1em; overflow: hidden; }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-bounce, .btn-bounce-text, .btn-bounce-text__wrap {
+      transition: transform .65s var(--ease-elastic);
+    }
+    .btn-bounce-text {
+      --text-duplicate-distance: 3em;
+      text-shadow: 0px var(--text-duplicate-distance) currentColor;
+    }
+    .btn-bounce:hover { transform: scale(.92) rotate(-3deg); }
+    .btn-bounce:hover .btn-bounce-text__wrap { transform: rotate(3deg); }
+    .btn-bounce:hover .btn-bounce-text { transform: translate(0, calc(-1 * var(--text-duplicate-distance))); }
+  }
+
+  /* ============ Flytande nav — OSMO "Detect Scrolling Direction" ============ */
+  .floatnav {
+    position: fixed;
+    top: 14px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: fit-content;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    max-width: calc(100vw - 28px);
+    background: var(--surface);
+    border: 2.5px solid var(--line);
+    border-radius: 999px;
+    box-shadow: var(--pop);
+    padding: 10px 22px;
+    transform: translateY(-160%) rotate(0.001deg);
+    transition: transform .6s var(--ease-elastic);
+  }
+  [data-scrolling-started="true"][data-scrolling-direction="up"] .floatnav {
+    transform: translateY(0%) rotate(0.001deg);
+  }
+  .floatnav__brand {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: .95rem;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .floatnav__brand span { color: var(--pink); }
+  .floatnav .toc a {
+    color: var(--ink);
+    border-bottom-color: color-mix(in srgb, var(--ink) 30%, transparent);
+  }
+  .floatnav .toc a:hover, .floatnav .toc a:focus-visible { border-bottom-color: var(--pink); color: var(--pink); }
+  @media (max-width: 640px) {
+    .floatnav { gap: 14px; padding: 9px 16px; }
+    .floatnav__brand span { display: none; }
+    .floatnav .toc { gap: 6px 12px; }
+    .floatnav .toc a { font-size: .72rem; }
+  }
 
   .stats { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; }
   .stat {
@@ -502,10 +592,12 @@
   footer p { max-width: 66ch; font-size: .92rem; margin: 0; opacity: .82; font-weight: 500; }
 
   @media (max-width: 640px) {
-    .board-head { grid-template-columns: 34px 1fr 78px; }
+    .board-head { grid-template-columns: 34px 1fr auto; }
     .board-head span:nth-child(3) { display: none; }
-    .row { grid-template-columns: 34px 1fr 78px; gap: 12px; padding: 15px 16px; }
-    .row .track { grid-column: 2 / 4; }
+    .row { grid-template-columns: 34px 1fr auto; gap: 10px 12px; padding: 15px 16px; }
+    .row .rank { grid-row: 1; grid-column: 1; }
+    .row .kcal { grid-row: 1; grid-column: 3; }
+    .row .track { grid-row: 2; grid-column: 1 / 4; }
     .pints .row > .kind { display: none; }
     .row .rank { font-size: 1.3rem; }
     .board, .faq, .champion { border-radius: 22px; }
@@ -515,12 +607,22 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
     .is-animating .fill { transition: none; width: var(--w); }
-    .chip { transition: none; }
+    .chip, .btn-bounce, .btn-bounce-text, .btn-bounce-text__wrap, .floatnav { transition: none; }
   }
 </style>
 </head>
-<body>
+<body data-scrolling-started="false" data-scrolling-direction="up">
+
+<div class="floatnav">
+  <a href="#" class="floatnav__brand">Kalorisnål<span>&nbsp;Glass</span></a>
+  <nav class="toc" aria-label="Snabbnavigering">
+    <a href="#topplista">Topplistan</a>
+    <a href="#proteinglass">Proteinglass</a>
+    <a href="#faq">Frågor &amp; svar</a>
+  </nav>
+</div>
 
 <header class="hero">
   <div class="bubbles" aria-hidden="true">
@@ -535,7 +637,6 @@
       <nav class="toc" aria-label="Innehåll">
         <a href="#topplista">Topplistan</a>
         <a href="#proteinglass">Proteinglass</a>
-        <a href="#tips">Välja rätt</a>
         <a href="#faq">Frågor &amp; svar</a>
       </nav>
     </div>
@@ -555,6 +656,12 @@
       <span class="stat">Räknat per styck</span>
     </div>
 
+    <a href="#topplista" class="btn-bounce">
+      <div class="btn-bounce-bg"></div>
+      <div class="btn-bounce-text__wrap">
+        <span class="btn-bounce-text">Till topplistan ↓</span>
+      </div>
+    </a>
   </div>
 </header>
 
@@ -931,6 +1038,23 @@
 </script>
 
 <script>
+  // OSMO: Detect Scrolling Direction (Up/Down)
+  (function () {
+    var lastScrollTop = 0;
+    var threshold = 10;
+    var thresholdTop = 50;
+
+    window.addEventListener('scroll', function () {
+      var nowScrollTop = window.scrollY;
+      if (Math.abs(lastScrollTop - nowScrollTop) >= threshold) {
+        var direction = nowScrollTop > lastScrollTop ? 'down' : 'up';
+        document.body.setAttribute('data-scrolling-direction', direction);
+        document.body.setAttribute('data-scrolling-started', nowScrollTop > thresholdTop ? 'true' : 'false');
+        lastScrollTop = nowScrollTop;
+      }
+    }, { passive: true });
+  })();
+
   (function () {
     var board = document.querySelector('.board');
     var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
