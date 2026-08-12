@@ -147,7 +147,7 @@ section[id] { scroll-margin-top: 96px; }
 }
 
 h1 {
-  font-size: clamp(2.5rem, 10vw, 4.9rem);
+  font-size: clamp(2.1rem, 8.6vw, 4.4rem);
   line-height: .9;
   text-transform: uppercase;
   margin: 0;
@@ -811,6 +811,21 @@ footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
   .launch .btn-bounce { margin-left: 0; }
   .faq { padding: 4px 20px; }
   .tips li { padding: 18px 20px 18px 56px; }
+
+  .hero .wrap { padding-top: 34px; padding-bottom: 42px; }
+  .standfirst { font-size: 1.08rem; }
+
+  /* Navlänkarna är bara ~23 px höga — ge dem en 40 px träffyta utan att
+     flytta en enda pixel, och luftigare radavstånd så ytorna inte överlappar */
+  .toc, footer nav { gap: 16px 20px; }
+  .toc a, footer nav a { position: relative; }
+  .toc a::after, footer nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 40px;
+    transform: translateY(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
