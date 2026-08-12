@@ -131,16 +131,6 @@
     background: var(--cream);
   }
 
-  .updated {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: .72rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--pink-ink);
-    opacity: .6;
-  }
-
   .brandrow {
     display: flex;
     align-items: center;
@@ -177,7 +167,7 @@
     color: var(--pink-ink);
   }
 
-  .toc { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; }
   .toc a {
     color: var(--pink-ink);
     font-family: var(--display);
@@ -524,7 +514,12 @@
   <div class="wrap">
     <div class="brandrow">
       <span class="brand">Kalorisnål <span>Glass</span></span>
-      <span class="updated">Uppdaterad 12 aug 2026</span>
+      <nav class="toc" aria-label="Innehåll">
+        <a href="#topplista">Topplistan</a>
+        <a href="#proteinglass">Proteinglass</a>
+        <a href="#tips">Välja rätt</a>
+        <a href="#faq">Frågor &amp; svar</a>
+      </nav>
     </div>
 
     <h1>Nyttig glass Sverige 2026<em>de 10 kalorisnålaste</em></h1>
@@ -541,12 +536,6 @@
       <span class="stat">Räknat per styck</span>
     </div>
 
-    <nav class="toc" aria-label="Innehåll">
-      <a href="#topplista">Topplistan</a>
-      <a href="#proteinglass">Proteinglass &amp; pints</a>
-      <a href="#tips">Välja rätt</a>
-      <a href="#faq">Frågor &amp; svar</a>
-    </nav>
   </div>
 </header>
 
